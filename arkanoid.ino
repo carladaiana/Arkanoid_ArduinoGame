@@ -9,17 +9,6 @@ const int buttonPin2 = 3;
 int buttonState1 = 0;         // variable for reading the pushbutton status
 int buttonState2 = 0;
 
-char victorySign[] = {8, 8,
-                  B00000001,
-                  B00000001,
-                  B00000001,
-                  B00000001,
-                  B00000001,
-                  B00000001,
-                  B00000001,
-                  B00000001
-                 };
-
 char smile[] = {8, 8,
                   B00111100,
                   B01000010,
@@ -242,13 +231,13 @@ void setPad(int x, int y) {
     //erase current pad
     m.setDot(pad[0].y,pad[0].x,false);
     m.setDot(pad[1].y,pad[1].x,false);
-    //m.setDot(pad[2].y,pad[2].x,false);
+    
     //set new coordinates
-    pad[0].x = x; pad[1].x = x; //pad[2].x = x;
-    pad[0].y = y; pad[1].y = y + 1; //pad[2].y = y + 2;
+    pad[0].x = x; pad[1].x = x; 
+    pad[0].y = y; pad[1].y = y + 1; 
     m.setDot(pad[0].y,pad[0].x,true);
     m.setDot(pad[1].y,pad[1].x,true);
-    //m.setDot(pad[2].y,pad[2].x,true);
+    
   }
 }
 
@@ -352,14 +341,6 @@ Direction getNextDirection(point_t nextPosition) {
     }
   }
   
-  /*else
-  if(nextPosition.x == pad[2].x && nextPosition.y == pad[2].y) {
-    switch(currentDirection) {
-      case R_D: return U; 
-      case D: return U_R; 
-      case D_L: return U_R; 
-    }
-  }*/
   else {
     switch(currentDirection) {
       case U:
@@ -553,12 +534,12 @@ void loop() {
     // check if the pushbutton is pressed.
     // if it is, the buttonState is HIGH
     if (buttonState1 == HIGH) {
-      delay(200);
+      delay(150);
       movePadRight();
     } 
     
     if (buttonState2 == HIGH) {
-      delay(200);
+      delay(150);
       movePadLeft();
     }  
 
@@ -585,6 +566,8 @@ void printStringWithShift(char* s, int shift_speed) {
   }
 }
 
+
+// Function used if commands are sent from the computer
 /*void serialEvent()
 {
    while(Serial.available()) 
